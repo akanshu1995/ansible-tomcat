@@ -1,0 +1,23 @@
+---
+- name: Installing tomcat
+  hosts: webservers
+  become: yes
+  tasks:
+    - name: Install OpenJDK
+      yum:
+        name: java
+        state: latest
+
+    - name: download tomcat server packages
+      get_url:
+        url: http://mirrors.estointernet.in/apache/tomcat/tomcat-8/v8.5.69/bin/apache-tomcat-8.5.69.tar.gz
+        dest: /usr/local
+
+    - name: extract tomcat packages
+      unarchive:
+        src: /usr/local/apache-tomcat-8.5.69.tar.gz
+        dest: /usr/local
+        remote_src: yes
+
+    - name: start tomcat services
+      shell: nohup /usr/local/apache-tomcat-8.5.69/bin/startup.sh
