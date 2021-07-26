@@ -5,7 +5,7 @@ pipeline{
 	       steps{
 	          script{
               echo "Running playbook"
-              ansiblePlaybook colorized: true, credentialsId: 'ansible-server-id', inventory: 'inventory', playbook: 'deploy.yml'
+              ansiblePlaybook colorized: true, credentialsId: 'ansible-id', inventory: 'inventory', playbook: 'deploy.yml'
             }
         }
 	}
